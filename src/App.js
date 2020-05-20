@@ -51,8 +51,6 @@ class BooksApp extends React.Component {
       this.setState(() => ({
         searchedBooks: typeof books === "object" ? books : [],
       }));
-
-      console.log("sbooks", books);
     });
   };
   removeSearchBooks = () => {
@@ -70,7 +68,7 @@ class BooksApp extends React.Component {
           render={() => (
             <div className="list-books">
               <div className="list-books-title">
-                <h1>My Book Reads App</h1>
+                <h1>MyReads App</h1>
               </div>
               <div className="list-books-content">
                 <div>

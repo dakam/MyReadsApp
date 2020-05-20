@@ -92,16 +92,6 @@ class SearchBooks extends Component {
                           readBooks
                         )}
                       />
-
-                      {console.log(
-                        "selected",
-                        this.getBookShelf(
-                          book,
-                          currentBooks,
-                          wantedBooks,
-                          readBooks
-                        )
-                      )}
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>

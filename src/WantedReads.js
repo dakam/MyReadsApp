@@ -28,7 +28,7 @@ class WantedReads extends Component {
                       <BookChanger
                         onupdateShelfChanger={onupdateShelf}
                         thisbook={book}
-                        thisvalue={"wantToRead"}
+                        selectedValue={"wantToRead"}
                       />
                     </div>
                     <div className="book-title">{book.title}</div>
