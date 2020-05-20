@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BookChanger from "./BookChanger";
 import { Link } from "react-router-dom";
 
 class SearchBooks extends Component {
@@ -12,6 +13,23 @@ class SearchBooks extends Component {
     }));
   };
 
+  getBookShelf(book, currentBooks, wantedBooks, readBooks) {
+    let bookShelf = "none";
+    let ncurrent = currentBooks.filter((cBook) => cBook.id === book.id).length;
+    let nwanted = wantedBooks.filter((wBook) => wBook.id === book.id).length;
+    let nread = readBooks.filter((rBook) => rBook.id === book.id).length;
+
+    if (ncurrent > 0) {
+      bookShelf = "currentlyReading";
+    } else if (nwanted > 0) {
+      bookShelf = "wantToRead";
+    } else if (nread > 0) {
+      bookShelf = "read";
+    }
+
+    return bookShelf;
+  }
+
   render() {
     const {
       onSearchBooks,
@@ -22,6 +40,7 @@ class SearchBooks extends Component {
       readBooks,
       currentBooks,
     } = this.props;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -51,7 +70,7 @@ class SearchBooks extends Component {
           {sBooks.length >= 1 && (
             <ol className="books-grid">
               {sBooks.map((book) => (
-                <li>
+                <li key={book.id}>
                   <div className="book">
                     <div className="book-top">
                       <div
@@ -63,50 +82,26 @@ class SearchBooks extends Component {
                             "url(" + book.imageLinks.thumbnail + ")",
                         }}
                       />
-                      <div className="book-shelf-changer">
-                        <select
-                          onChange={(event) =>
-                            onupdateShelf(book, event.target.value)
-                          }
-                        >
-                          <option value="move" disabled>
-                            Move to...
-                          </option>
+                      <BookChanger
+                        onupdateShelfChanger={onupdateShelf}
+                        thisbook={book}
+                        selectedValue={this.getBookShelf(
+                          book,
+                          currentBooks,
+                          wantedBooks,
+                          readBooks
+                        )}
+                      />
 
-                          {currentBooks.filter(
-                            (cBook) => cBook.title === book.title
-                          ).length > 0 ? (
-                            <option selected value="currentlyReading">
-                              Currently Reading
-                            </option>
-                          ) : (
-                            <option value="currentlyReading">
-                              Currently Reading
-                            </option>
-                          )}
-                          {wantedBooks.filter(
-                            (wBook) => wBook.title === book.title
-                          ).length > 0 ? (
-                            <option selected value="wantToRead">
-                              Want to Read
-                            </option>
-                          ) : (
-                            <option value="wantToRead">Want to Read</option>
-                          )}
-
-                          {readBooks.filter(
-                            (rBook) => rBook.title === book.title
-                          ).length > 0 ? (
-                            <option selected value="read">
-                              Read
-                            </option>
-                          ) : (
-                            <option value="read">Read</option>
-                          )}
-
-                          <option value="none">None</option>
-                        </select>
-                      </div>
+                      {console.log(
+                        "selected",
+                        this.getBookShelf(
+                          book,
+                          currentBooks,
+                          wantedBooks,
+                          readBooks
+                        )
+                      )}
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>

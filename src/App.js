@@ -26,10 +26,6 @@ class BooksApp extends React.Component {
         ),
         wantedBooks: allbooks.filter((book) => book.shelf === "wantToRead"),
       }));
-
-      console.log("readbooks", this.state.readBooks);
-      console.log("currentbooks", this.state.currentBooks);
-      console.log("wantedbooks", this.state.wantedBooks);
     });
   }
 

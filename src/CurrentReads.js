@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BookChanger from "./BookChanger";
 
 class CurrentReads extends Component {
   render() {
@@ -25,25 +26,11 @@ class CurrentReads extends Component {
                             "url(" + book.imageLinks.thumbnail + ")",
                         }}
                       />
-                      <div className="book-shelf-changer">
-                        <select
-                          value={"currentlyReading"}
-                          onChange={(event) =>
-                            onupdateShelf(book, event.target.value)
-                          }
-                        >
-                          <option value="move" disabled>
-                            Move to...
-                          </option>
-                          <option value="currentlyReading">
-                            {" "}
-                            Currently Reading
-                          </option>
-                          <option value="wantToRead">Want to Read</option>
-                          <option value="read">Read</option>
-                          <option value="none">None</option>
-                        </select>
-                      </div>
+                      <BookChanger
+                        onupdateShelfChanger={onupdateShelf}
+                        thisbook={book}
+                        thisvalue={"currentlyReading"}
+                      />
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>
