@@ -26,7 +26,6 @@ class SearchBooks extends Component {
     } else if (nread > 0) {
       bookShelf = "read";
     }
-
     return bookShelf;
   }
 
