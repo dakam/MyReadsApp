@@ -29,7 +29,7 @@ class CurrentReads extends Component {
                       <BookChanger
                         onupdateShelfChanger={onupdateShelf}
                         thisbook={book}
-                        thisvalue={"currentlyReading"}
+                        selectedValue={"currentlyReading"}
                       />
                     </div>
                     <div className="book-title">{book.title}</div>

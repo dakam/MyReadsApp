@@ -25,7 +25,6 @@ class ReadReads extends Component {
                             "url(" + book.imageLinks.thumbnail + ")",
                         }}
                       />
-
                       <BookChanger
                         onupdateShelfChanger={onupdateShelf}
                         thisbook={book}
