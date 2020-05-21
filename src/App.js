@@ -17,15 +17,14 @@ class BooksApp extends React.Component {
     searchedBooks: [],
   };
 
-  componentDidMount() {
-    BooksAPI.getAll().then((allbooks) => {
-      this.setState(() => ({
-        readBooks: allbooks.filter((book) => book.shelf === "read"),
-        currentBooks: allbooks.filter(
-          (book) => book.shelf === "currentlyReading"
-        ),
-        wantedBooks: allbooks.filter((book) => book.shelf === "wantToRead"),
-      }));
+  async componentDidMount() {
+    const allbooks = await BooksAPI.getAll();
+    this.setState({
+      readBooks: allbooks.filter((book) => book.shelf === "read"),
+      currentBooks: allbooks.filter(
+        (book) => book.shelf === "currentlyReading"
+      ),
+      wantedBooks: allbooks.filter((book) => book.shelf === "wantToRead"),
     });
   }
 

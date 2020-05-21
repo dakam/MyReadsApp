@@ -16,15 +16,38 @@ class WantedReads extends Component {
                 <li key={book.id}>
                   <div className="book">
                     <div className="book-top">
-                      <div
-                        className="book-cover"
-                        style={{
-                          width: 128,
-                          height: 192,
-                          backgroundImage:
-                            "url(" + book.imageLinks.thumbnail + ")",
-                        }}
-                      />
+                      {typeof book.imageLinks === undefined && (
+                        <div
+                          className="book-cover"
+                          style={{
+                            width: 128,
+                            height: 192,
+                            backgroundImage: "url(../public/default_thumb.png)",
+                          }}
+                        />
+                      )}
+                      {book.imageLinks !== undefined &&
+                      book.imageLinks.smallThumbnail !== undefined ? (
+                        <div
+                          className="book-cover"
+                          style={{
+                            width: 128,
+                            height: 192,
+                            backgroundImage:
+                              "url(" + book.imageLinks.smallThumbnail + ")",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          className="book-cover"
+                          style={{
+                            width: 128,
+                            height: 192,
+                            backgroundImage: "url(../public/default_thumb.png)",
+                          }}
+                        />
+                      )}
+
                       <BookChanger
                         onupdateShelfChanger={onupdateShelf}
                         thisbook={book}
